@@ -89,3 +89,4 @@ Traceback (most recent call last):
 werkzeug.routing.BuildError: Could not build url for endpoint 'main.addstaff'. Did you mean 'main.index' instead?
 2018-04-21 20:21:01,753 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:50]
 2018-04-21 20:22:06,725 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:50]
+2018-04-21 20:25:54,300 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:50]
