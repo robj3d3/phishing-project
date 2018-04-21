@@ -1,19 +1,19 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Length, Email
-from app.models import User
+from app.models import Staff
 
-class UserForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+class StaffForm(FlaskForm):
+    staffname = StringField('Staff Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Add User')
+    submit = SubmitField('Add Staff')
 
-    def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
-        if user is not None:
-            raise ValidationError('Please use a different username.')
+    def validate_staffname(self, staffname):
+        staff = Staff.query.filter_by(staffname=staffname.data).first()
+        if staff is not None:
+            raise ValidationError('Please use a different staff name.')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
-        if user is not None:
+        staff = Staff.query.filter_by(email=email.data).first()
+        if staff is not None:
             raise ValidationError('Please use a different email address.')

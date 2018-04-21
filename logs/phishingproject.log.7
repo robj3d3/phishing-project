@@ -1,4 +1,4 @@
-2018-04-19 13:07:03,691 ERROR: Exception on /addusers [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1560]
+2018-04-19 13:07:05,055 ERROR: Exception on /addusers [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -41,7 +41,8 @@ Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\werkzeug\routing.py", line 1776, in build
     raise BuildError(endpoint, values, method, self)
 werkzeug.routing.BuildError: Could not build url for endpoint 'index'. Did you mean 'main.addusers' instead?
-2018-04-19 13:07:04,456 ERROR: Exception on /addusers [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1560]
+2018-04-19 13:09:05,721 INFO: PhishingProject startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:50]
+2018-04-19 13:09:07,798 ERROR: Exception on /addusers [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1560]
 Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1982, in wsgi_app
     response = self.full_dispatch_request()
@@ -56,7 +57,7 @@ Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1598, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
   File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 16, in addusers
-    return render_template('main/addusers.html', title='Add Users', form=form)
+    return render_template('main/addusers.html', title='AddUsers', form=form)
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\templating.py", line 134, in render_template
     context, ctx.app)
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\templating.py", line 116, in _render
@@ -84,3 +85,4 @@ Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\werkzeug\routing.py", line 1776, in build
     raise BuildError(endpoint, values, method, self)
 werkzeug.routing.BuildError: Could not build url for endpoint 'index'. Did you mean 'main.addusers' instead?
+2018-04-19 13:09:56,950 INFO: PhishingProject startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:50]
