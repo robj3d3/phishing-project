@@ -17,3 +17,6 @@ class StaffForm(FlaskForm):
         staff = Staff.query.filter_by(email=email.data).first()
         if staff is not None:
             raise ValidationError('Please use a different email address.')
+
+class SendEmail(FlaskForm):
+    submit = SubmitField('Send Phishing Email')

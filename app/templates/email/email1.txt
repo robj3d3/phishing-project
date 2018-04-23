@@ -1,0 +1,11 @@
+Dear {{ staff.staffname }},
+
+Your account appears to be under attack.
+
+Please visit the following link to reset your password.
+
+{{ url_for('main.fakepage1', staffid=staff.id, _external=True) }}
+
+Sincerely,
+
+Landing Page 1

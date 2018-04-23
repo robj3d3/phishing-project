@@ -1,8 +1,9 @@
 from flask import render_template, redirect, url_for, flash, request, current_app
 from app import db
-from app.main.forms import StaffForm
+from app.main.forms import StaffForm, SendEmail
 from app.models import Staff
 from app.main import bp
+from app.main.email import send_phishing_email
 
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET', 'POST'])
@@ -28,7 +29,20 @@ def index():
     # items is attribute of object containing the list of items in requested page
     # False returns empty page instead of 404 for a non-existing page
 
-@bp.route('/staff/<staffid>')
+@bp.route('/staff/<staffid>', methods=['GET', 'POST'])
 def staff(staffid):
+    form = SendEmail()
+    if form.validate_on_submit():
+        staff = Staff.query.filter_by(id=staffid).first()
+        send_phishing_email(staff)
+        flash('Phishing email sent, awaiting responses')
+        return redirect(url_for('main.staff', staffid=staff.id))
     staff = Staff.query.filter_by(id=staffid).first_or_404()
-    return render_template('staff.html', staff=staff)
+    return render_template('staff.html', staff=staff, form=form)
+
+# remember to provide POST method when incorporating a form
+@bp.route('/fakepage1/<staffid>')
+def fakepage1(staffid):
+    staff = Staff.query.filter_by(id=staffid).first()
+    flash('Staff member has clicked on this link!')
+    return render_template('landingpages/fakepage1.html', staff=staff)
