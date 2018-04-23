@@ -1,7 +1,7 @@
 <table>
     <tr valign="top">
         <td>
-            <a href="#">{{ staff.staffname }}</a>
+            <a href="{{ url_for('main.staff', staffid=staff.id) }}">{{ staff.staffname }}</a>
             <br>Email: {{ staff.email }}
             <hr>
         </td>

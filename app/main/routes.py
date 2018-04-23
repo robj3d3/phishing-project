@@ -28,7 +28,7 @@ def index():
     # items is attribute of object containing the list of items in requested page
     # False returns empty page instead of 404 for a non-existing page
 
-# @bp.route('/staff/<staffname>')
-# def staff():
-#     staff = Staff.query.filter_by(staffname=staffname).first_or_404()
-    
+@bp.route('/staff/<staffid>')
+def staff(staffid):
+    staff = Staff.query.filter_by(id=staffid).first_or_404()
+    return render_template('staff.html', staff=staff)
