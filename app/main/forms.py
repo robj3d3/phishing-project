@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import ValidationError, DataRequired, Length, Email
 from app.models import Staff
 
@@ -20,3 +20,8 @@ class StaffForm(FlaskForm):
 
 class SendEmail(FlaskForm):
     submit = SubmitField('Send Phishing Email')
+
+class LandingPage(FlaskForm):
+    username = StringField('Username')
+    password = PasswordField('Password')
+    submit = SubmitField('Sign in to O365')

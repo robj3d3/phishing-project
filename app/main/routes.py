@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request, current_app
 from app import db
-from app.main.forms import StaffForm, SendEmail
+from app.main.forms import StaffForm, SendEmail, LandingPage
 from app.models import Staff
 from app.main import bp
 from app.main.email import send_phishing_email
@@ -41,8 +41,18 @@ def staff(staffid):
     return render_template('staff.html', staff=staff, form=form)
 
 # remember to provide POST method when incorporating a form
-@bp.route('/fakepage1/<staffid>')
+@bp.route('/fakepage1/<staffid>', methods=['GET', 'POST'])
 def fakepage1(staffid):
+    form = LandingPage()
+    if request.method == "GET":
+        staff = Staff.query.filter_by(id=staffid).first()
+        staff.clicked += 1
+        db.session.commit()
+    if request.method == "POST":
+        staff = Staff.query.filter_by(id=staffid).first()
+        staff.submitted += 1
+        db.session.commit()
+        return redirect("https://www.office.com/")
     staff = Staff.query.filter_by(id=staffid).first()
     flash('Staff member has clicked on this link!')
-    return render_template('landingpages/fakepage1.html', staff=staff)
+    return render_template('landingpages/fakepage1.html', staff=staff, form=form)
