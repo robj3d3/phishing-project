@@ -34,25 +34,24 @@ def staff(staffid):
     form = SendEmail()
     if form.validate_on_submit():
         staff = Staff.query.filter_by(id=staffid).first()
-        send_phishing_email(staff)
+        email = form.selection.data
+        send_phishing_email(staff, email)
         flash('Phishing email sent, awaiting responses')
         return redirect(url_for('main.staff', staffid=staff.id))
     staff = Staff.query.filter_by(id=staffid).first_or_404()
     return render_template('staff.html', staff=staff, form=form)
 
 # remember to provide POST method when incorporating a form
-@bp.route('/fakepage1/<staffid>', methods=['GET', 'POST'])
-def fakepage1(staffid):
+@bp.route('/<page>/<staffid>', methods=['GET', 'POST'])
+def landingpage(page, staffid):
     form = LandingPage()
     if request.method == "GET":
         staff = Staff.query.filter_by(id=staffid).first()
         staff.clicked += 1
-        db.session.commit()
+        db.session.commit() # remember to commit!
     if request.method == "POST":
         staff = Staff.query.filter_by(id=staffid).first()
         staff.submitted += 1
         db.session.commit()
-        return redirect("https://www.office.com/")
-    staff = Staff.query.filter_by(id=staffid).first()
-    flash('Staff member has clicked on this link!')
-    return render_template('landingpages/fakepage1.html', staff=staff, form=form)
+        return redirect(("https://www.{}.com/").format(page)) # means name MUST belong to URL
+    return render_template(('landingpages/{}.html').format(page), staff=staff, form=form)

@@ -10,11 +10,13 @@
             <td>
                 <p><strong>Phishing links clicked:</strong> {{ staff.clicked }}</p>
                 <p><strong>Phishing forms submitted:</strong> {{ staff.submitted }}</p>
+                <p><strong>Emails delivered:</strong> {{ staff.delivered }}</p>
             </td>
         </tr>
     </table>
     <form action="" method="post">
         {{ form.hidden_tag() }}
+        <p>{{ form.selection }}</p>
         <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}

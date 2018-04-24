@@ -1,11 +1,11 @@
 <p>Dear {{ staff.staffname }},</p>
 <p>
     Your account appears to be under attack
-    <a href="{{ url_for('main.fakepage1', staffid=staff.id, _external=True) }}">
+    <a href="{{ url_for('main.landingpage', page='office', staffid=staff.id, _external=True) }}">
         click here to fix
     </a>.
 </p>
 <p>Alternatively, you can paste the following link into your browser's address bar:</p>
-<p>{{ url_for('main.fakepage1', staffid=staff.id, _external=True) }}</p>
+<p>{{ url_for('main.landingpage', page='office', staffid=staff.id, _external=True) }}</p>
 <p>Sincerely,</p>
-<p>Landing Page 1</p>
+<p>Office 365</p>

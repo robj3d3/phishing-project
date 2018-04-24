@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
+from wtforms import StringField, SubmitField, PasswordField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length, Email
 from app.models import Staff
 
@@ -19,9 +19,11 @@ class StaffForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class SendEmail(FlaskForm):
+    selection = SelectField('Select an email', choices=[('office', 'Office365'), ('dropbox', 'Dropbox'), ('google', 'Google')])
     submit = SubmitField('Send Phishing Email')
 
 class LandingPage(FlaskForm):
     username = StringField('Username')
     password = PasswordField('Password')
-    submit = SubmitField('Sign in to O365')
+    submit = SubmitField('Sign in')
+    
