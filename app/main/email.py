@@ -4,7 +4,7 @@ from flask_mail import Message
 from app import mail, db
 
 def send_async_email(app, msg):
-    with app.app_context():
+    with app.app_context(): # Flask uses contexts to avoid having to pass args across functions (in this case, config stored needs to be accessed)
         mail.send(msg)
 
 def send_email(subject, sender, recipients, text_body, html_body):
@@ -12,10 +12,10 @@ def send_email(subject, sender, recipients, text_body, html_body):
     msg.body = text_body
     msg.html = html_body
     Thread(target=send_async_email,
-           args=(current_app._get_current_object(), msg)).start()
+           args=(current_app._get_current_object(), msg)).start() # gets the actual application instance from inside the proxy object *(re-read contexts)
 
 def send_phishing_email(staff, email):
-    staff.delivered += 1 # maybe would be better to verify that email has been delivered
+    staff.delivered += 1 # maybe would be better to verify that email has been delivered. Even if, how so?
     db.session.commit()
     send_email('Account Under Attack!',
                 sender=current_app.config['ADMINS'][0],
