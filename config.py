@@ -16,4 +16,8 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['robmailserver@gmail.com']
     POSTS_PER_PAGE = 5
-    SERVER_NAME = '127.0.0.1:5000'
+    SERVER_NAME = 'local.docker:5000'
+# On one hand, setting SERVER_NAME = 127.0.0.1 allows link creation for emailer, but invalidates forms (CSRF invalidation)
+# However, localhost:5000 fixes invalidation and URL generation but flask app is running on 127.0.0.1 so won't load on localhost:5000
+# "The spec for rejecting cookies states that domain names must be a fully qualified domain name with a TLD (.com, etc.) or be an exact IP address."
+# setting etc\hosts file for 127.0.0.1 to local.docker compromises, specifying a server name allows for URL generation and a FQDN means CSRF tokens validate

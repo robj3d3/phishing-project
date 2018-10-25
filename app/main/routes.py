@@ -35,7 +35,7 @@ def staff(staffid):
     if form.validate_on_submit():
         staff = Staff.query.filter_by(id=staffid).first()
         email = form.selection.data
-        send_phishing_email(staff, email) # where 'email' is the TEMPLATE name
+        send_phishing_email(staff, email) # where 'email' is the TEMPLATE name # there is threading so no need to queue
         flash('Phishing email sent, awaiting responses')
         return redirect(url_for('main.staff', staffid=staff.id))
     staff = Staff.query.filter_by(id=staffid).first_or_404()
