@@ -16,9 +16,9 @@
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <p>
-                {{ form.staffname.label }}<br>
-                {{ form.staffname(size=32) }}<br>
-                {% for error in form.staffname.errors %}
+                {{ form.staff_name.label }}<br>
+                {{ form.staff_name(size=32) }}<br>
+                {% for error in form.staff_name.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>

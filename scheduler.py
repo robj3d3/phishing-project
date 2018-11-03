@@ -18,7 +18,7 @@ with app.app_context():
 #        staff = Staff.query.all()
 #
 #        for s in staff:
-#            print(s.staffname)
+#            print(s.staff_name)
 #
 #        time.sleep(3)
 

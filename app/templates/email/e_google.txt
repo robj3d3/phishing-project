@@ -1,4 +1,4 @@
-Dear {{ staff.staffname }},
+Dear {{ staff.staff_name }},
 
 Your account appears to be under attack.
 

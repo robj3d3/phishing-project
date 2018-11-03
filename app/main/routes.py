@@ -10,13 +10,13 @@ from app.main.email import send_phishing_email
 def index():
     form = StaffForm()
     if form.validate_on_submit():
-        staff = Staff(staffname=form.staffname.data, email=form.email.data)
+        staff = Staff(staff_name=form.staff_name.data, email=form.email.data)
         db.session.add(staff)
         db.session.commit()
         flash('New staff added!')
         return redirect(url_for('main.index'))
     page = request.args.get('page', 1, type=int)
-    staff = Staff.query.order_by(Staff.staffname).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+    staff = Staff.query.order_by(Staff.staff_name).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
     if staff.has_next:
         next_url = url_for('main.index', page=staff.next_num)
     else:

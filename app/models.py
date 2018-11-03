@@ -2,7 +2,7 @@ from app import db
 
 class Staff(db.Model):
     id = db.Column(db.Integer, primary_key=True) # nullable=False is implied with primary key
-    staffname = db.Column(db.String(64), index=True, unique=True) # check documentation on 'nullable' - makes sense
+    staff_name = db.Column(db.String(64), index=True, unique=False) # check documentation on 'nullable' - makes sense
     email = db.Column(db.String(120), index=True, unique=True)
     clicked = db.Column(db.Integer, default=0)
     submitted = db.Column(db.Integer, default=0)
@@ -14,7 +14,7 @@ class Staff(db.Model):
     # lazy defines how database query for relationship  will be issued (dynamic just means it returns an object, basically)
 
     def __repr__(self):
-        return '<Staff {}>'.format(self.staffname)
+        return '<Staff {}>'.format(self.staff_name)
 
 class ScheduledEmails(db.Model):
     id = db.Column(db.Integer, primary_key=True)

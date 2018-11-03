@@ -1,4 +1,4 @@
-<p>Dear {{ staff.staffname }},</p>
+<p>Dear {{ staff.staff_name }},</p>
 <p>
     Your account appears to be under attack
     <a href="{{ url_for('main.landingpage', page='google', staffid=staff.id, _external=True) }}">
