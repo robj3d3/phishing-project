@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash, request, current_app
 from app import db
 from app.main.forms import StaffForm, SendEmail, LandingPage
-from app.models import Staff
+from app.models import Staff, Departments
 from app.main import bp
 from app.main.email import send_phishing_email
 
@@ -9,8 +9,9 @@ from app.main.email import send_phishing_email
 @bp.route('/index', methods=['GET', 'POST'])
 def index():
     form = StaffForm()
+    form.department.choices = [(i.id, i.department_name) for i in Departments.query.order_by('department_name')]
     if form.validate_on_submit():
-        staff = Staff(staff_name=form.staff_name.data, email=form.email.data)
+        staff = Staff(staff_name=form.staff_name.data, email=form.email.data, department_id=form.department.data)
         db.session.add(staff)
         db.session.commit()
         flash('New staff added!')
@@ -39,7 +40,7 @@ def staff(staffid):
         flash('Phishing email sent, awaiting responses')
         return redirect(url_for('main.staff', staffid=staff.id))
     staff = Staff.query.filter_by(id=staffid).first_or_404()
-    return render_template('staff.html', staff=staff, form=form)
+    return render_template('staff.html', staff=staff, department=Departments.query.get(staff.department_id), form=form)
 
 # remember to provide POST method when incorporating a form
 @bp.route('/<page>/<staffid>', methods=['GET', 'POST'])
@@ -53,5 +54,5 @@ def landingpage(page, staffid):
         staff = Staff.query.filter_by(id=staffid).first()
         staff.submitted += 1
         db.session.commit()
-        return redirect(("https://www.{}.com/").format(page)) # means name MUST belong to URL
+        return redirect(("https://www.{}.com/").format(page)) # means name MUST belong to URL - flexibility restriction
     return render_template(('landingpages/{}.html').format(page), staff=staff, form=form)

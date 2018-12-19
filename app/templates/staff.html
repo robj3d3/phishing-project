@@ -4,8 +4,9 @@
     <table>
         <tr valign="top">
             <td>
-                <h1>Name:</h1> <h2>{{ staff.staff_name }}</h2>
-                <h1>Email:</h1> <h2>{{ staff.email }}</h2>
+                <h1>Name:</h1> <h2><span style="font-weight:normal;">{{ staff.staff_name }}</span></h2>
+                <h1>Email:</h1> <h2><span style="font-weight:normal;">{{ staff.email }}</span></h2>
+                <h1>Department:</h1> <h2><span style="font-weight:normal;">{{ department.department_name }}</span></h2>
             </td>
             <td>
                 <p><strong>Phishing links clicked:</strong> {{ staff.clicked }}</p>

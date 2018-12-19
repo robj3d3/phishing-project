@@ -1,11 +1,12 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Length, Email
-from app.models import Staff
+from app.models import Staff, Departments
 
 class StaffForm(FlaskForm):
     staff_name = StringField('Staff Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
+    department = SelectField('Department', coerce=int, validators=[DataRequired()]) # coerce keyword arg says use int() to coerce form data
     submit = SubmitField('Add Staff')
 
     def validate_email(self, email):
