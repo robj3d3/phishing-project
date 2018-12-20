@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request, current_app
 from app import db
-from app.main.forms import StaffForm, SendEmail, LandingPage
+from app.main.forms import StaffForm, SendEmail, LandingPage, RemoveStaffForm
 from app.models import Staff, Departments
 from app.main import bp
 from app.main.email import send_phishing_email
@@ -32,15 +32,21 @@ def index():
 
 @bp.route('/staff/<staffid>', methods=['GET', 'POST'])
 def staff(staffid):
-    form = SendEmail()
-    if form.validate_on_submit():
+    sendEmailForm = SendEmail()
+    removeStaffForm = RemoveStaffForm()
+    if sendEmailForm.validate_on_submit():
         staff = Staff.query.filter_by(id=staffid).first()
-        email = form.selection.data
+        email = sendEmailForm.selection.data
         send_phishing_email(staff, email) # where 'email' is the TEMPLATE name # there is threading so no need to queue
         flash('Phishing email sent, awaiting responses')
         return redirect(url_for('main.staff', staffid=staff.id))
+    if removeStaffForm.validate_on_submit():
+        staff = Staff.query.filter_by(id=staffid).first()
+        db.session.delete(staff)
+        db.session.commit()
+        return redirect(url_for('main.index'))
     staff = Staff.query.filter_by(id=staffid).first_or_404()
-    return render_template('staff.html', staff=staff, department=Departments.query.get(staff.department_id), form=form)
+    return render_template('staff.html', staff=staff, department=Departments.query.get(staff.department_id), send_form=sendEmailForm, remove_form=removeStaffForm)
 
 # remember to provide POST method when incorporating a form
 @bp.route('/<page>/<staffid>', methods=['GET', 'POST'])
