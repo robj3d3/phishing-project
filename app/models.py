@@ -17,7 +17,7 @@ class Staff(db.Model):
     clicked = db.Column(db.Integer, default=0)
     submitted = db.Column(db.Integer, default=0)
     delivered = db.Column(db.Integer, default=0)
-    confidence = db.Column(db.Integer, default=0)
+    risk_score = db.Column(db.Integer, default=0)
     scheduled_emails = db.relationship('ScheduledEmails', backref='staff', lazy='dynamic') # notice uppercase 'S' for Scheduled (name of MODEL)
     # for one-to-many relationship, relationship defined on 'one' side... not a part of database diagram... it just defines the relationship
     # backref allows staff to be found given a scheduled email (ScheduledEmails.staff) - useful for reports

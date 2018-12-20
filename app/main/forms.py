@@ -22,4 +22,3 @@ class LandingPage(FlaskForm):
     username = StringField('Username')
     password = PasswordField('Password')
     submit = SubmitField('Sign in')
-    
