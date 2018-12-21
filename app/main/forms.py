@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, SelectField
+from wtforms import StringField, SubmitField, PasswordField, SelectField, IntegerField
 from wtforms.validators import ValidationError, DataRequired, Length, Email
 from app.models import Staff, Departments
 
@@ -25,3 +25,13 @@ class LandingPage(FlaskForm):
 
 class RemoveStaffForm(FlaskForm):
     submit = SubmitField('Remove Staff Member')
+
+class EditStaffForm(FlaskForm):
+    staff_name = StringField('Update Staff Name', validators=[DataRequired()])
+    email = StringField('Update Email', validators=[DataRequired(), Email()])
+    department = SelectField('Update Department', coerce=int, validators=[DataRequired()])
+    risk_score = IntegerField('Update Average Risk Score')
+    submit = SubmitField('Submit Detail Changes')
+
+class ResetRiskScoreForm(FlaskForm):
+    submit = SubmitField('Reset Risk Score Details')

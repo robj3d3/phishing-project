@@ -13,6 +13,9 @@
                 <p><strong>Phishing forms submitted:</strong> {{ staff.submitted }}</p>
                 <p><strong>Emails delivered:</strong> {{ staff.delivered }}</p>
             </td>
+            <td>
+                <p><a href="{{ url_for('main.edit_staff', staffid=staff.id) }}">Edit Staff Profile</a></p>
+            </td>
         </tr>
     </table>
     <form action="" method="post">
