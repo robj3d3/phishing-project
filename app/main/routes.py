@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash, request, current_app
 from app import db
-from app.main.forms import StaffForm, SendEmail, LandingPage, RemoveStaffForm, EditStaffForm, ResetRiskScoreForm
-from app.models import Staff, Departments
+from app.main.forms import StaffForm, SendEmail, ScheduleEmail, LandingPage, RemoveStaffForm, EditStaffForm, ResetRiskScoreForm
+from app.models import Staff, Departments, ScheduledEmails
 from app.main import bp
 from app.main.email import send_phishing_email
 
@@ -38,7 +38,7 @@ def staff(staffid):
         staff = Staff.query.filter_by(id=staffid).first()
         email = sendEmailForm.selection.data
         send_phishing_email(staff, email) # where 'email' is the TEMPLATE name # there is threading so no need to queue
-        flash('Phishing email sent, awaiting responses')
+        flash('Phishing email sent, awaiting responses.')
         return redirect(url_for('main.staff', staffid=staff.id))
     if removeStaffForm.validate_on_submit():
         staff = Staff.query.filter_by(id=staffid).first()
@@ -97,3 +97,16 @@ def edit_staff(staffid):
         editStaffForm.risk_score.data = staff.risk_score
     staff = Staff.query.filter_by(id=staffid).first_or_404()
     return render_template('edit_staff.html', title='Edit Staff Profile', staff=staff, department=Departments.query.get(staff.department_id), edit_form=editStaffForm, reset_form=resetRiskForm)
+
+@bp.route('/staff/<staffid>/schedule', methods=['GET', 'POST'])
+def schedule(staffid): # functionality to manually schedule a phishing email
+    form = ScheduleEmail()
+    if form.validate_on_submit():
+        staff = Staff.query.filter_by(id=staffid).first()
+        scheduled_email = ScheduledEmails(staff_email=staff.email, template=form.selection.data, send_time=form.datetime, staff=staff)
+        db.session.add(scheduled_email)
+        db.session.commit()
+        flash('Phishing email scheduled.')
+        return redirect(url_for('main.schedule', staffid=staff.id))
+    staff = Staff.query.filter_by(id=staffid).first()
+    return render_template('schedule.html', title='Manually Schedule Email', staff=staff, form=form)

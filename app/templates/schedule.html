@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Manually Schedule Test Phishing Email - Staff ID {{ staff.id }}</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.selection.label }}<br>
+        {{ form.selection }}
+    </p>
+    <p>{{ form.date_field.label }}<br>
+        {{ form.date_field }}
+    </p>
+    <p>{{ form.time_field.label }}<br>
+        {{ form.time_field }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+
+{% endblock %}

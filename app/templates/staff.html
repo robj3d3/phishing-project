@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>Profile - Staff Member ID {{ staff.id }}</h1>
     <table>
         <tr valign="top">
             <td>
@@ -18,11 +19,20 @@
             </td>
         </tr>
     </table>
+    <hr>
+    <h1>Actions</h1>
+    <hr>
+    <h2>Send Phishing Email</h2>
     <form action="" method="post">
         {{ send_form.hidden_tag() }}
-        <p>{{ send_form.selection }}</p>
+        <p>
+            {{ send_form.selection.label }}<br>
+            {{ send_form.selection }}
+        </p>
         <p>{{ send_form.submit() }}</p>
     </form>
+    <hr>
+    <p><a href="{{ url_for('main.schedule', staffid=staff.id) }}">Manually Schedule Test Phishing Email</a></p>
     <hr>
     <form action="" method="post">
         {{ remove_form.hidden_tag() }}
