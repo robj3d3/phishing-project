@@ -56,11 +56,17 @@ def landingpage(page, staffid):
         staff = Staff.query.filter_by(id=staffid).first()
         department = Departments.query.get(staff.department_id)
         staff.clicked += 1
-        if staff.clicked == 1: # first time staff member interaction, no need to find average
+        staff.latest_risk = 30
+        if staff.clicked == 1: # first time staff member interaction, no need to find average or change direction (as default is False)
             staff.risk_score += 30
         else:
-            staff.risk_score = (staff.risk_score + 30)/2
-        dep_risk = 0
+            new_risk = (staff.risk_score + 30)/2
+            if (new_risk - staff.risk_score) > 0:
+                staff.direction = False
+            elif (new_risk - staff.risk_score) < 0:
+                staff.direction = True
+            staff.risk_score = new_risk
+        dep_risk = 0 # to calculate department risk score, find average by summing staff risk scores and diving by no. staff
         for i in list(department.staff_members):
             dep_risk += i.risk_score
         dep_risk /= len(list(department.staff_members))
@@ -70,11 +76,17 @@ def landingpage(page, staffid):
         staff = Staff.query.filter_by(id=staffid).first()
         department = Departments.query.get(staff.department_id)
         staff.submitted += 1
+        staff.latest_risk = 100
         if staff.clicked == 1:
             staff.risk_score += 70
         else:
-            staff.risk_score = ((staff.risk_score * 2) + 70)/2
-        dep_risk = 0 # to calculate department risk score, find average by summing staff risk scores and diving by no. staff
+            new_risk = ((staff.risk_score * 2) + 70)/2
+            if (new_risk - ((staff.risk_score * 2) - 30)) > 0:
+                staff.direction = False
+            elif (new_risk - ((staff.risk_score * 2) - 30)) < 0:
+                staff.direction = True
+            staff.risk_score = new_risk
+        dep_risk = 0
         for i in list(department.staff_members):
             dep_risk += i.risk_score
         dep_risk /= len(list(department.staff_members))
@@ -103,15 +115,25 @@ def edit_staff(staffid):
         return redirect(url_for('main.edit_staff', staffid=staff.id))
     if resetRiskForm.validate_on_submit():
         staff = Staff.query.filter_by(id=staffid).first()
+        department = Departments.query.get(staff.department_id)
         staff.risk_score = 0
         staff.delivered = 0
         staff.clicked = 0
         staff.submitted = 0
+        staff.latest_risk = 0
+        staff.direction = False
+        dep_risk = 0 # need to re-calculate department risk_score with this staff member's new reset risk score 
+        for i in list(department.staff_members):
+            dep_risk += i.risk_score
+        dep_risk /= len(list(department.staff_members))
+        department.risk_score = dep_risk
         db.session.commit()
+        ### required to prevent form from being cleared upon resetRiskForm submission
         editStaffForm.staff_name.data = staff.staff_name
         editStaffForm.email.data = staff.email
         editStaffForm.department.data = staff.department_id
         editStaffForm.risk_score.data = staff.risk_score
+        ###
     elif request.method == 'GET': # this will show the default for a GET request as the form filled with existing staff details
         staff = Staff.query.filter_by(id=staffid).first()
         editStaffForm.staff_name.data = staff.staff_name

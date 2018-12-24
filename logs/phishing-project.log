@@ -17,3 +17,15 @@ Traceback (most recent call last):
   File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 57, in landingpage
     department = Departments.query.get(staff.department_id)
 AttributeError: 'NoneType' object has no attribute 'department_id'
+2018-12-24 17:32:16,755 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 17:46:10,219 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 17:46:16,794 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 17:46:39,879 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 17:49:25,105 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 17:58:49,630 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 17:59:32,150 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 18:00:52,599 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 18:06:11,343 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 18:14:35,848 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 18:23:14,352 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+2018-12-24 18:30:33,710 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]

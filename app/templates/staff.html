@@ -10,6 +10,13 @@
                 <h1>Department:</h1> <h2><span style="font-weight:normal;">{{ department.department_name }}</span></h2>
                 <h1>Average risk score:</h1> <h2><span style="font-weight:normal;">{{ staff.risk_score|round(1, 'common') }}</span></h2>
                 <h1>Average department risk score:</h1> <h2><span style="font-weight:normal;">{{ department.risk_score|round(1, 'common') }}</span></h2>
+                <h1>Latest absolute score:</h1> <h2><span style="font-weight:normal;">{{ staff.latest_risk }}</span></h2>
+                <h1>Direction of progress:</h1> 
+                    {% if staff.direction %}
+                    <h2><span style="font-weight:normal;">Decreasing risk</span></h2>
+                    {% else %}
+                    <h2><span style="font-weight:normal;">Increasing risk</span></h2>
+                    {% endif %}
             </td>
             <td>
                 <p><strong>Phishing links clicked:</strong> {{ staff.clicked }}</p>
