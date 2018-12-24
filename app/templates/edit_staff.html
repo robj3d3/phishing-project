@@ -13,7 +13,7 @@
                     <h2>Department:</h2>
                         <h2><span style="font-weight:normal;">{{ department.department_name }}</span></h2>
                     <h2>Average risk score:</h2>
-                        <h2><span style="font-weight:normal;">{{ staff.risk_score }}</span></h2>
+                        <h2><span style="font-weight:normal;">{{ staff.risk_score|round(1, 'common') }}</span></h2>
             </td>
             <td>
                 <form action="" method="post">

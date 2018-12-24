@@ -54,11 +54,34 @@ def landingpage(page, staffid):
     form = LandingPage()
     if request.method == "GET":
         staff = Staff.query.filter_by(id=staffid).first()
+        department = Departments.query.get(staff.department_id)
         staff.clicked += 1
+        if staff.clicked == 1: # first time staff member interaction, no need to find average
+            staff.risk_score += 30
+        else:
+            staff.risk_score = (staff.risk_score + 30)/2
+        dep_risk = 0
+        for i in list(department.staff_members):
+            dep_risk += i.risk_score
+        dep_risk /= len(list(department.staff_members))
+        department.risk_score = dep_risk
         db.session.commit() # remember to commit!
     if request.method == "POST":
         staff = Staff.query.filter_by(id=staffid).first()
+        department = Departments.query.get(staff.department_id)
         staff.submitted += 1
+        if staff.clicked == 1:
+            staff.risk_score += 70
+        else:
+            staff.risk_score = ((staff.risk_score * 2) + 70)/2
+        dep_risk = 0 # to calculate department risk score, find average by summing staff risk scores and diving by no. staff
+        for i in list(department.staff_members):
+            dep_risk += i.risk_score
+        dep_risk /= len(list(department.staff_members))
+        department.risk_score = dep_risk
+        # need to look at it as click or (click + submit)... because if you're submitting, you have to have clicked on the link first
+        # therefore, we do the average for clicking, however if they then submit, we reset the calculation and calculate average for (click + submit)
+        # reverse calculation: *2, -30... then + 100, /2 --> *2, +70, /2
         db.session.commit()
         return redirect(("https://www.{}.com/").format(page)) # means name MUST belong to URL - flexibility restriction
     return render_template(('landingpages/{}.html').format(page), title='Landing Page', staff=staff, form=form)

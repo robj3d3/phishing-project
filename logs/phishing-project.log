@@ -60,3 +60,39 @@ jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was loo
 2018-12-21 19:06:21,478 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
 2018-12-21 19:14:25,133 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
 2018-12-21 19:15:26,961 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 17:50:40,750 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 18:29:39,747 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 18:29:56,955 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 18:58:04,448 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 19:02:27,716 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 19:08:26,141 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 19:17:20,981 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 19:53:49,703 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 19:55:45,086 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 19:57:17,547 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 20:00:37,594 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 20:36:35,671 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 20:40:18,291 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 20:41:00,483 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 22:26:41,725 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 22:29:10,756 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-23 22:29:34,284 ERROR: Exception on /office/1 [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 56, in landingpage
+    department = Departments.query.filter_by(staff.department_id).first()
+TypeError: filter_by() takes 1 positional argument but 2 were given
+2018-12-23 22:33:53,613 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-24 16:08:15,635 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+2018-12-24 16:26:35,810 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]

@@ -8,6 +8,8 @@
                 <h1>Name:</h1> <h2><span style="font-weight:normal;">{{ staff.staff_name }}</span></h2>
                 <h1>Email:</h1> <h2><span style="font-weight:normal;">{{ staff.email }}</span></h2>
                 <h1>Department:</h1> <h2><span style="font-weight:normal;">{{ department.department_name }}</span></h2>
+                <h1>Average risk score:</h1> <h2><span style="font-weight:normal;">{{ staff.risk_score|round(1, 'common') }}</span></h2>
+                <h1>Average department risk score:</h1> <h2><span style="font-weight:normal;">{{ department.risk_score|round(1, 'common') }}</span></h2>
             </td>
             <td>
                 <p><strong>Phishing links clicked:</strong> {{ staff.clicked }}</p>
