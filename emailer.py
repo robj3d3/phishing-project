@@ -20,6 +20,8 @@ with app.app_context():
                     db.session.commit()
                     print("Email sent", e.staff, e.staff_email, e.send_time)
                     send_phishing_email(e.staff, e.template)
+                    db.session.delete(e) # delete scheduled email record to avoid data redundancy and to allow scheduler to continue
+                    db.session.commit()
                 else:
                     continue
             else:

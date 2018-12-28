@@ -4,6 +4,7 @@ from app.main.forms import StaffForm, SendEmail, ScheduleEmail, LandingPage, Rem
 from app.models import Staff, Departments, ScheduledEmails
 from app.main import bp
 from app.main.email import send_phishing_email
+import datetime
 
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET', 'POST'])
@@ -12,6 +13,7 @@ def index():
     form.department.choices = [(i.id, i.department_name) for i in Departments.query.order_by('department_name')]
     if form.validate_on_submit():
         staff = Staff(staff_name=form.staff_name.data, email=form.email.data, department_id=form.department.data)
+        staff.last_sent = (datetime.datetime.utcnow() - datetime.timedelta(days=21)) # initialises last_sent as 21 days prior to adding staff member to database
         db.session.add(staff)
         db.session.commit()
         flash('New staff added!')
@@ -36,13 +38,19 @@ def staff(staffid):
     removeStaffForm = RemoveStaffForm()
     if sendEmailForm.validate_on_submit():
         staff = Staff.query.filter_by(id=staffid).first()
-        email = sendEmailForm.selection.data
-        send_phishing_email(staff, email) # where 'email' is the TEMPLATE name # there is threading so no need to queue
+        template = sendEmailForm.selection.data
+        send_phishing_email(staff, template) # there is threading so no need to queue
         flash('Phishing email sent, awaiting responses.')
         return redirect(url_for('main.staff', staffid=staff.id))
     if removeStaffForm.validate_on_submit():
         staff = Staff.query.filter_by(id=staffid).first()
+        department = Departments.query.get(staff.department_id)
         db.session.delete(staff)
+        dep_risk = 0 # need to re-calculate department risk_score with this staff member now removed
+        for i in list(department.staff_members):
+            dep_risk += i.risk_score
+        dep_risk /= len(list(department.staff_members))
+        department.risk_score = dep_risk
         db.session.commit()
         return redirect(url_for('main.index'))
     staff = Staff.query.filter_by(id=staffid).first_or_404()
