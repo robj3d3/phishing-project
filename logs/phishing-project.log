@@ -1,6 +1,11 @@
-2018-12-24 17:23:01,840 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 17:28:34,113 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 17:29:17,614 ERROR: Exception on /index/asdu [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+2018-12-31 18:47:05,371 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:47:10,591 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:47:14,653 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:47:18,250 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:10:45,625 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:15:41,689 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:27:36,446 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:27:57,376 ERROR: Exception on /login [POST] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,54 +19,41 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 57, in landingpage
-    department = Departments.query.get(staff.department_id)
-AttributeError: 'NoneType' object has no attribute 'department_id'
-2018-12-24 17:32:16,755 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 17:46:10,219 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 17:46:16,794 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 17:46:39,879 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 17:49:25,105 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 17:58:49,630 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 17:59:32,150 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 18:00:52,599 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 18:06:11,343 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 18:14:35,848 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 18:23:14,352 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 18:30:33,710 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 19:37:30,050 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 19:37:37,196 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 19:39:18,877 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 19:41:45,294 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 19:42:15,204 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-24 19:43:20,678 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 17:55:22,016 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 17:56:07,847 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 17:58:27,673 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 17:58:45,282 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 17:59:43,005 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 17:59:47,972 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:02:13,936 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:02:22,764 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:04:15,672 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:07:11,130 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:08:00,282 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:09:12,224 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:13:37,409 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:16:22,755 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:22:26,410 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:22:59,055 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:24:31,543 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:26:46,581 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:30:27,480 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:30:58,211 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:49:59,576 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:56:52,745 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:59:07,601 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 18:59:56,117 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 19:00:32,171 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 19:03:08,287 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 19:03:54,945 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 19:08:21,100 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 19:12:09,213 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
-2018-12-28 19:14:13,687 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:56]
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\auth\routes.py", line 28, in login
+    if user is None or not user.check_password(form.password.data):
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\models.py", line 57, in check_password
+    return check_password_hash(self.password_hash, password)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\werkzeug\security.py", line 245, in check_password_hash
+    if pwhash.count('$') < 2:
+AttributeError: 'NoneType' object has no attribute 'count'
+2018-12-31 19:28:22,463 ERROR: Exception on /login [POST] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\auth\routes.py", line 28, in login
+    if user is None or not user.check_password(form.password.data):
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\models.py", line 57, in check_password
+    return check_password_hash(self.password_hash, password)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\werkzeug\security.py", line 245, in check_password_hash
+    if pwhash.count('$') < 2:
+AttributeError: 'NoneType' object has no attribute 'count'
+2018-12-31 19:29:32,714 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:30:27,937 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:32:58,932 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:35:21,386 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:35:41,752 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:37:26,651 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:37:40,797 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:37:51,903 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:38:52,412 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 19:39:33,242 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]

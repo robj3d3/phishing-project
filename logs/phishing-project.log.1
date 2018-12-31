@@ -1,4 +1,4 @@
-2018-12-21 18:47:30,037 ERROR: Exception on /staff/1/schedule [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+2018-12-31 17:33:23,847 ERROR: Exception on /login [POST] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,71 +12,13 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 112, in schedule
-    return render_template('schedule.html', title='Manually Schedule Email', staff=staff, form=form)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\templating.py", line 134, in render_template
-    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\loaders.py", line 125, in load
-    code = environment.compile(source, name, filename)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 591, in compile
-    self.handle_exception(exc_info, source_hint=source_hint)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\templates\schedule.html", line 18, in template
-    <p>{{ form.submit() }}</p>
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 497, in _parse
-    return Parser(self, source, name, encode_filename(filename)).parse()
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\parser.py", line 901, in parse
-    result = nodes.Template(self.subparse(), lineno=1)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\parser.py", line 883, in subparse
-    rv = self.parse_statement()
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\parser.py", line 130, in parse_statement
-    return getattr(self, 'parse_' + self.stream.current.value)()
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\parser.py", line 268, in parse_block
-    node.body = self.parse_statements(('name:endblock',), drop_needle=True)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\parser.py", line 170, in parse_statements
-    self.fail_eof(end_tokens)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\parser.py", line 104, in fail_eof
-    return self._fail_ut_eof(None, stack, lineno)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\parser.py", line 90, in _fail_ut_eof
-    self.fail(' '.join(message), lineno)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\parser.py", line 59, in fail
-    raise exc(msg, lineno, self.name, self.filename)
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
-2018-12-21 18:47:56,454 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-21 18:50:44,788 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-21 18:51:32,284 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-21 18:52:45,301 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-21 19:00:57,634 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-21 19:02:13,659 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-21 19:06:21,478 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-21 19:14:25,133 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-21 19:15:26,961 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 17:50:40,750 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 18:29:39,747 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 18:29:56,955 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 18:58:04,448 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 19:02:27,716 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 19:08:26,141 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 19:17:20,981 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 19:53:49,703 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 19:55:45,086 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 19:57:17,547 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 20:00:37,594 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 20:36:35,671 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 20:40:18,291 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 20:41:00,483 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 22:26:41,725 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 22:29:10,756 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-23 22:29:34,284 ERROR: Exception on /office/1 [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\auth\routes.py", line 27, in login
+    login_user(user)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\utils.py", line 158, in login_user
+    if not force and not user.is_active:
+AttributeError: 'Admin' object has no attribute 'is_active'
+2018-12-31 17:35:05,243 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 17:35:23,381 ERROR: Exception on /login [POST] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -90,10 +32,83 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 56, in landingpage
-    department = Departments.query.filter_by(staff.department_id).first()
-TypeError: filter_by() takes 1 positional argument but 2 were given
-2018-12-23 22:33:53,613 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-24 16:08:15,635 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-24 16:26:35,810 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
-2018-12-24 16:53:30,749 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:53]
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\auth\routes.py", line 27, in login
+    login_user(user, force=True)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\utils.py", line 161, in login_user
+    user_id = getattr(user, current_app.login_manager.id_attribute)()
+AttributeError: 'Admin' object has no attribute 'get_id'
+2018-12-31 17:36:48,300 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 17:37:06,548 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 17:37:16,213 ERROR: Exception on /index [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\utils.py", line 259, in decorated_view
+    elif not current_user.is_authenticated:
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\werkzeug\local.py", line 347, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\werkzeug\local.py", line 306, in _get_current_object
+    return self.__local()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\utils.py", line 335, in _get_user
+    current_app.login_manager._load_user()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\login_manager.py", line 359, in _load_user
+    return self.reload_user()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\login_manager.py", line 317, in reload_user
+    "No user_loader has been installed for this "
+Exception: No user_loader has been installed for this LoginManager. Refer tohttps://flask-login.readthedocs.io/en/latest/#how-it-works for more info.
+2018-12-31 17:49:33,826 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 17:59:32,586 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:00:26,209 ERROR: Exception on /login [POST] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\auth\routes.py", line 28, in login
+    session.permament=True
+NameError: name 'session' is not defined
+2018-12-31 18:01:07,594 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:01:26,949 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:02:03,306 ERROR: Exception on /login [POST] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\auth\routes.py", line 27, in login
+    session.permament=True
+NameError: name 'session' is not defined
+2018-12-31 18:18:42,330 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:19:46,835 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:19:53,043 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:20:08,031 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:45:24,043 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]
+2018-12-31 18:45:28,388 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:64]

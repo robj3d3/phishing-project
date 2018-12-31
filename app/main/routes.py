@@ -1,4 +1,5 @@
-from flask import render_template, redirect, url_for, flash, request, current_app
+from flask import render_template, redirect, url_for, flash, request, current_app, session
+from flask_login import login_required
 from app import db
 from app.main.forms import StaffForm, SendEmail, ScheduleEmail, LandingPage, RemoveStaffForm, EditStaffForm, ResetRiskScoreForm
 from app.models import Staff, Departments, ScheduledEmails
@@ -6,8 +7,14 @@ from app.main import bp
 from app.main.email import send_phishing_email
 import datetime
 
+@bp.before_app_request
+def before_request():
+    session.permanent = True # lifetime length in config
+
+
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET', 'POST'])
+@login_required
 def index():
     form = StaffForm()
     form.department.choices = [(i.id, i.department_name) for i in Departments.query.order_by('department_name')]
@@ -33,6 +40,7 @@ def index():
     # False returns empty page instead of 404 for a non-existing page
 
 @bp.route('/staff/<staffid>', methods=['GET', 'POST'])
+@login_required
 def staff(staffid):
     sendEmailForm = SendEmail()
     removeStaffForm = RemoveStaffForm()
@@ -108,6 +116,7 @@ def landingpage(page, staffid):
 
 
 @bp.route('/staff/<staffid>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_staff(staffid):
     editStaffForm = EditStaffForm()
     resetRiskForm = ResetRiskScoreForm()
@@ -152,6 +161,7 @@ def edit_staff(staffid):
     return render_template('edit_staff.html', title='Edit Staff Profile', staff=staff, department=Departments.query.get(staff.department_id), edit_form=editStaffForm, reset_form=resetRiskForm)
 
 @bp.route('/staff/<staffid>/schedule', methods=['GET', 'POST'])
+@login_required
 def schedule(staffid): # functionality to manually schedule a phishing email
     form = ScheduleEmail()
     if form.validate_on_submit():
