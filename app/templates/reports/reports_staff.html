@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Search Staff</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.staff_name.label }}<br>
+            {{ form.staff_name(size=32) }}<br>
+            {% for error in form.staff_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <br>
+    {% if staff %}
+        <h2>Query Results</h2>
+        {% for staff in staff %}
+            {% include 'reports/_staffreports.html' %}
+        {% endfor %}
+        {% if next_url %}
+        <a href="{{ next_url }}">Go Back</a>
+        {% endif %}
+        {% if prev_url %}
+        <a href="{{ prev_url }}">Next Page</a>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

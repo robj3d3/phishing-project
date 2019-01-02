@@ -9,7 +9,7 @@
                 <h1>Email:</h1> <h2><span style="font-weight:normal;">{{ staff.email }}</span></h2>
                 <h1>Department:</h1> <h2><span style="font-weight:normal;">{{ department.department_name }}</span></h2>
                 <h1>Average risk score:</h1> <h2><span style="font-weight:normal;">{{ staff.risk_score|round(1, 'common') }}</span></h2>
-                <h1>Average department risk score:</h1> <h2><span style="font-weight:normal;">{{ department.risk_score|round(1, 'common') }}</span></h2>
+                <h1>Department average risk score:</h1> <h2><span style="font-weight:normal;">{{ department.risk_score|round(1, 'common') }}</span></h2>
                 <h1>Latest absolute score:</h1> <h2><span style="font-weight:normal;">{{ staff.latest_risk }}</span></h2>
                 <h1>Direction of progress:</h1> 
                     {% if staff.direction %}

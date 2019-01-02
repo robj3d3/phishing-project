@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Search Department</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.department.label }}<br>
+            {{ form.department }}<br>
+            {% for error in form.department.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <br>
+    {% if department %}
+        <h2>Query Results</h2>
+        <p><strong>Department average risk score: </strong>{{ department.risk_score|round(1, 'common') }}</p>
+        {% for staff in staff %}
+            {% include 'reports/_staffreports.html' %}
+        {% endfor %}
+        {% if next_url %}
+        <a href="{{ next_url }}">Go Back</a>
+        {% endif %}
+        {% if prev_url %}
+        <a href="{{ prev_url }}">Next Page</a>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
