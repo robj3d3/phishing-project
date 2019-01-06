@@ -1,28 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
     {% if title %}
-    <title>{{ title }} - Phishing Project</title>
+    {{ title }} - Phishing Project
     {% else %}
-    <title>Phishing Project</title>
+    Phishing Project
     {% endif %}
-</head>
-<body>
-    <div>
-        Phishing:
-        <a href="{{ url_for('main.index') }}">Dashboard</a>
-        <a href="{{ url_for('reports.reports') }}">Reports</a>
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">Phishing Project</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('main.index') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('reports.reports') }}">Reports</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url_for('reports.reports_staff') }}">Query Staff</a></li>
+                    <li><a href="{{ url_for('reports.reports_departments') }}">Query Departments</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content imported here #}
+        {% block app_content %}{% endblock %}
     </div>
-    <hr>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    {% block content %}{% endblock %}
-</body>
-</html>
+{% endblock %}
+
+
+
+
+
+

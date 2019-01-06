@@ -1,50 +1,55 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
-    <h1>Profile - Staff Member ID {{ staff.id }}</h1>
-    <table>
-        <tr valign="top">
-            <td>
-                <h1>Name:</h1> <h2><span style="font-weight:normal;">{{ staff.staff_name }}</span></h2>
-                <h1>Email:</h1> <h2><span style="font-weight:normal;">{{ staff.email }}</span></h2>
-                <h1>Department:</h1> <h2><span style="font-weight:normal;">{{ department.department_name }}</span></h2>
-                <h1>Average risk score:</h1> <h2><span style="font-weight:normal;">{{ staff.risk_score|round(1, 'common') }}</span></h2>
-                <h1>Department average risk score:</h1> <h2><span style="font-weight:normal;">{{ department.risk_score|round(1, 'common') }}</span></h2>
-                <h1>Latest absolute score:</h1> <h2><span style="font-weight:normal;">{{ staff.latest_risk }}</span></h2>
-                <h1>Direction of progress:</h1> 
+{% block app_content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Profile - Staff Member ID {{ staff.id }}</h1>
+                <hr>
+                <h2>Name:</h2> <p><span style="font-size:30px;font-weight:bold">{{ staff.staff_name }}</span></p>
+                <h2>Email:</h2> <p><span style="font-size:30px;font-weight:bold">{{ staff.email }}</span></p>
+                <h2>Department:</h2> <p><span style="font-size:30px;font-weight:bold">{{ department.department_name }}</span></p>
+                <h2>Average risk score:</h2> <p><span style="font-size:30px;font-weight:bold">{{ staff.risk_score|round(1, 'common') }}</span></p>
+                <h2>Department average risk score:</h2> <p><span style="font-size:30px;font-weight:bold">{{ department.risk_score|round(1, 'common') }}</span></p>
+                <h2>Latest absolute score:</h2> <p><span style="font-size:30px;font-weight:bold">{{ staff.latest_risk }}</span></p>
+                <h2>Direction of progress:</h2> 
                     {% if staff.direction %}
-                    <h2><span style="font-weight:normal;">Decreasing risk</span></h2>
+                    <p><span style="font-size:30px;font-weight:bold;color:green">Decreasing risk</span></p>
                     {% else %}
-                    <h2><span style="font-weight:normal;">Increasing risk</span></h2>
+                    <p><span style="font-size:30px;font-weight:bold;color:red">Increasing risk</span></p>
                     {% endif %}
-            </td>
-            <td>
+                <hr>
                 <p><strong>Phishing links clicked:</strong> {{ staff.clicked }}</p>
                 <p><strong>Phishing forms submitted:</strong> {{ staff.submitted }}</p>
                 <p><strong>Emails delivered:</strong> {{ staff.delivered }}</p>
-            </td>
-            <td>
-                <p><a href="{{ url_for('main.edit_staff', staffid=staff.id) }}">Edit Staff Profile</a></p>
-            </td>
-        </tr>
-    </table>
-    <hr>
-    <h1>Actions</h1>
-    <hr>
-    <h2>Send Phishing Email</h2>
-    <form action="" method="post">
-        {{ send_form.hidden_tag() }}
-        <p>
-            {{ send_form.selection.label }}<br>
-            {{ send_form.selection }}
-        </p>
-        <p>{{ send_form.submit() }}</p>
-    </form>
-    <hr>
-    <p><a href="{{ url_for('main.schedule', staffid=staff.id) }}">Manually Schedule Test Phishing Email</a></p>
-    <hr>
-    <form action="" method="post">
-        {{ remove_form.hidden_tag() }}
-        <p>{{ remove_form.submit() }}</p>
-    </form>
+                <hr>
+                <br>
+                <a href="{{ url_for('main.edit_staff', staffid=staff.id) }}" class="btn btn-block btn-info" role="button">Edit Staff Profile</a>
+                <br>
+            </div>
+            <div class="col-md-6">
+                <h1>Actions</h1>
+                <hr>
+                <h2>Send Phishing Email</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ wtf.quick_form(send_form, button_map={'submit':'primary'}) }}
+                    </div>
+                </div>
+                <hr>
+                <h2>Schedule Phishing Email</h2>
+                <a href="{{ url_for('main.schedule', staffid=staff.id) }}" class="btn btn-block btn-success" role="button">Manually Schedule Test Phishing Email</a>
+                <hr>
+                <br>
+                <div class="row">
+                        <div class="col-md-4">
+                            {{ wtf.quick_form(remove_form, button_map={'submit':'danger'}) }}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

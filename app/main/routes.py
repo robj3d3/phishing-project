@@ -57,8 +57,11 @@ def staff(staffid):
         dep_risk = 0 # need to re-calculate department risk_score with this staff member now removed
         for i in list(department.staff_members):
             dep_risk += i.risk_score
-        dep_risk /= len(list(department.staff_members))
-        department.risk_score = dep_risk
+        if len(list(department.staff_members)) > 0:
+            dep_risk /= len(list(department.staff_members))
+            department.risk_score = dep_risk
+        else:
+            department.risk_score = 0
         db.session.commit()
         return redirect(url_for('main.index'))
     staff = Staff.query.filter_by(id=staffid).first_or_404()
@@ -85,8 +88,11 @@ def landingpage(page, staffid):
         dep_risk = 0 # to calculate department risk score, find average by summing staff risk scores and diving by no. staff
         for i in list(department.staff_members):
             dep_risk += i.risk_score
-        dep_risk /= len(list(department.staff_members))
-        department.risk_score = dep_risk
+        if len(list(department.staff_members)) > 0:
+            dep_risk /= len(list(department.staff_members))
+            department.risk_score = dep_risk
+        else:
+            department.risk_score = 0
         db.session.commit() # remember to commit!
     if request.method == "POST":
         staff = Staff.query.filter_by(id=staffid).first()
@@ -105,8 +111,11 @@ def landingpage(page, staffid):
         dep_risk = 0
         for i in list(department.staff_members):
             dep_risk += i.risk_score
-        dep_risk /= len(list(department.staff_members))
-        department.risk_score = dep_risk
+        if len(list(department.staff_members)) > 0:
+            dep_risk /= len(list(department.staff_members))
+            department.risk_score = dep_risk
+        else:
+            department.risk_score = 0
         # need to look at it as click or (click + submit)... because if you're submitting, you have to have clicked on the link first
         # therefore, we do the average for clicking, however if they then submit, we reset the calculation and calculate average for (click + submit)
         # reverse calculation: *2, -30... then + 100, /2 --> *2, +70, /2
@@ -142,21 +151,24 @@ def edit_staff(staffid):
         dep_risk = 0 # need to re-calculate department risk_score with this staff member's new reset risk score 
         for i in list(department.staff_members):
             dep_risk += i.risk_score
-        dep_risk /= len(list(department.staff_members))
-        department.risk_score = dep_risk
+        if len(list(department.staff_members)) > 0:
+            dep_risk /= len(list(department.staff_members))
+            department.risk_score = dep_risk
+        else:
+            department.risk_score = 0
         db.session.commit()
         ### required to prevent form from being cleared upon resetRiskForm submission
         editStaffForm.staff_name.data = staff.staff_name
         editStaffForm.email.data = staff.email
         editStaffForm.department.data = staff.department_id
-        editStaffForm.risk_score.data = staff.risk_score
+        editStaffForm.risk_score.data = round(staff.risk_score, 1)
         ###
     elif request.method == 'GET': # this will show the default for a GET request as the form filled with existing staff details
         staff = Staff.query.filter_by(id=staffid).first()
         editStaffForm.staff_name.data = staff.staff_name
         editStaffForm.email.data = staff.email
         editStaffForm.department.data = staff.department_id
-        editStaffForm.risk_score.data = staff.risk_score
+        editStaffForm.risk_score.data = round(staff.risk_score, 1)
     staff = Staff.query.filter_by(id=staffid).first_or_404()
     return render_template('edit_staff.html', title='Edit Staff Profile', staff=staff, department=Departments.query.get(staff.department_id), edit_form=editStaffForm, reset_form=resetRiskForm)
 

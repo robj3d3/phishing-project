@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
+
     <h1>Reports</h1>
+    <hr>
     <h2>Staff Ordered by Risk</h2>
     {% for staff in staff %}
         {% include 'reports/_staffreports.html' %}
     {% endfor %}
-    {% if next_url %}
-    <a href="{{ next_url }}">Go Back</a>
-    {% endif %}
-    {% if prev_url %}
-    <a href="{{ prev_url }}">Next Page</a>
-    {% endif %}
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}"><span aria-hidden="true">&larr;</span>Go Back</a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">Next Page<span aria-hidden="true">&rarr;</span></a>
+            </li>
+        </ul>
+    </nav>
     <br>
-
-    <hr>
-    <p><a href="{{ url_for('reports.reports_staff') }}">Query Staff</a></p>
-    <p><a href="{{ url_for('reports.reports_departments') }}">Query Departments</a></p>
 
 {% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table>
+        <tr valign="top">
+            <td>
+                <h1>Edit Profile - Staff Member ID {{ staff.id }}</h1>
+                <h1>Existing Details</h2>
+                    <h2>Name:</h2>
+                        <h2><span style="font-weight:normal;">{{ staff.staff_name }}</span></h2>
+                    <h2>Email:</h2>
+                        <h2><span style="font-weight:normal;">{{ staff.email }}</span></h2>
+                    <h2>Department:</h2>
+                        <h2><span style="font-weight:normal;">{{ department.department_name }}</span></h2>
+                    <h2>Average risk score:</h2>
+                        <h2><span style="font-weight:normal;">{{ staff.risk_score|round(1, 'common') }}</span></h2>
+            </td>
+            <td>
+                <form action="" method="post">
+                    {{ reset_form.hidden_tag() }}
+                    <p>{{ reset_form.submit() }}</p>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <h1>Edit Details</h1>
+    <form action="" method="post">
+        {{ edit_form.hidden_tag() }}
+        <p>
+            {{ edit_form.staff_name.label }}<br>
+            {{ edit_form.staff_name(size=32) }}<br>
+            {% for error in edit_form.staff_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ edit_form.email.label }}<br>
+            {{ edit_form.email(size=64) }}<br>
+            {% for error in edit_form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ edit_form.department.label }}<br>
+            {{ edit_form.department }}<br>
+            {% for error in edit_form.department.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ edit_form.risk_score.label }}<br>
+            {{ edit_form.risk_score(size=3) }}<br>
+            {% for error in edit_form.risk_score.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ edit_form.submit() }}</p>
+    </form>
+{% endblock %}

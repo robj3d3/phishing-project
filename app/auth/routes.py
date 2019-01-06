@@ -38,7 +38,7 @@ def login():
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated or len(list(Admin.query.all())) > 0:
-        flash('Admin account already exists.')
+        flash('Administrator account already exists.')
         return redirect(url_for('main.index'))
     form = AdminRegistrationForm()
     if form.validate_on_submit():

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Profile - Staff Member ID {{ staff.id }}</h1>
+    <table>
+        <tr valign="top">
+            <td>
+                <h1>Name:</h1> <h2><span style="font-weight:normal;">{{ staff.staff_name }}</span></h2>
+                <h1>Email:</h1> <h2><span style="font-weight:normal;">{{ staff.email }}</span></h2>
+                <h1>Department:</h1> <h2><span style="font-weight:normal;">{{ department.department_name }}</span></h2>
+                <h1>Average risk score:</h1> <h2><span style="font-weight:normal;">{{ staff.risk_score|round(1, 'common') }}</span></h2>
+                <h1>Department average risk score:</h1> <h2><span style="font-weight:normal;">{{ department.risk_score|round(1, 'common') }}</span></h2>
+                <h1>Latest absolute score:</h1> <h2><span style="font-weight:normal;">{{ staff.latest_risk }}</span></h2>
+                <h1>Direction of progress:</h1> 
+                    {% if staff.direction %}
+                    <h2><span style="font-weight:normal;">Decreasing risk</span></h2>
+                    {% else %}
+                    <h2><span style="font-weight:normal;">Increasing risk</span></h2>
+                    {% endif %}
+            </td>
+            <td>
+                <p><strong>Phishing links clicked:</strong> {{ staff.clicked }}</p>
+                <p><strong>Phishing forms submitted:</strong> {{ staff.submitted }}</p>
+                <p><strong>Emails delivered:</strong> {{ staff.delivered }}</p>
+            </td>
+            <td>
+                <p><a href="{{ url_for('main.edit_staff', staffid=staff.id) }}">Edit Staff Profile</a></p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <h1>Actions</h1>
+    <hr>
+    <h2>Send Phishing Email</h2>
+    <form action="" method="post">
+        {{ send_form.hidden_tag() }}
+        <p>
+            {{ send_form.selection.label }}<br>
+            {{ send_form.selection }}
+        </p>
+        <p>{{ send_form.submit() }}</p>
+    </form>
+    <hr>
+    <p><a href="{{ url_for('main.schedule', staffid=staff.id) }}">Manually Schedule Test Phishing Email</a></p>
+    <hr>
+    <form action="" method="post">
+        {{ remove_form.hidden_tag() }}
+        <p>{{ remove_form.submit() }}</p>
+    </form>
+{% endblock %}

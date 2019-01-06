@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Reports</h1>
+    <h2>Staff Ordered by Risk</h2>
+    {% for staff in staff %}
+        {% include 'reports/_staffreports.html' %}
+    {% endfor %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Go Back</a>
+    {% endif %}
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Next Page</a>
+    {% endif %}
+    <br>
+
+    <hr>
+    <p><a href="{{ url_for('reports.reports_staff') }}">Query Staff</a></p>
+    <p><a href="{{ url_for('reports.reports_departments') }}">Query Departments</a></p>
+
+{% endblock %}

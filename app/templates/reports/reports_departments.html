@@ -1,31 +1,32 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
+{% block app_content %}
+
     <h1>Search Department</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.department.label }}<br>
-            {{ form.department }}<br>
-            {% for error in form.department.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form, button_map={'submit':'primary'}) }}
+        </div>
+    </div>
     <br>
     {% if department %}
         <h2>Query Results</h2>
-        <p><strong>Department average risk score: </strong>{{ department.risk_score|round(1, 'common') }}</p>
+        <br>
+        <p><span style="font-size:20px;font-weight:bold">Department average risk score: </span><span style="font-size:20px">{{ department.risk_score|round(1, 'common') }}</span></p>
         {% for staff in staff %}
             {% include 'reports/_staffreports.html' %}
         {% endfor %}
-        {% if next_url %}
-        <a href="{{ next_url }}">Go Back</a>
-        {% endif %}
-        {% if prev_url %}
-        <a href="{{ prev_url }}">Next Page</a>
-        {% endif %}
+        <nav aria-label="...">
+            <ul class="pager">
+                <li class="previous{% if not prev_url %} disabled{% endif %}">
+                    <a href="{{ prev_url or '#' }}"><span aria-hidden="true">&larr;</span>Go Back</a>
+                </li>
+                <li class="next{% if not next_url %} disabled{% endif %}">
+                    <a href="{{ next_url or '#' }}">Next Page<span aria-hidden="true">&rarr;</span></a>
+                </li>
+            </ul>
+        </nav>
     {% endif %}
 
 {% endblock %}

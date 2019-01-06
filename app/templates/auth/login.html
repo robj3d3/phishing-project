@@ -1,37 +1,19 @@
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
+{% block app_content %}
 
     <h1>System Administrator Sign In</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=64) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form, button_map={'submit':'primary'}) }}
+        </div>
+    </div>
 
-        {% if no_account %}
-        <p>You still need to register an admin account! <a href="{{ url_for('auth.register') }}">Click to Register</a></p>
-        {% endif %}
+    <br>
+    {% if no_account %}
+    <p>You still need to register an admin account! <a href="{{ url_for('auth.register') }}">Click to Register</a></p>
+    {% endif %}
 
 {% endblock %}
