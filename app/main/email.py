@@ -16,6 +16,8 @@ def send_email(subject, sender, recipients, text_body, html_body):
            args=(current_app._get_current_object(), msg)).start() # gets the actual application instance from inside the proxy object *(re-read contexts)
 
 def send_phishing_email(staff, template):
+    if staff.delivered == 0: # logic flaw solution - (0 risk score) + (emails delivered > 0) = decreasing risk, opposed to default increasing risk
+        staff.direction = True
     staff.delivered += 1 # maybe would be better to verify that email has been delivered. Even if, how so?
     staff.last_sent = datetime.datetime.utcnow()
     db.session.commit()

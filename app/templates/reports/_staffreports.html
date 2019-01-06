@@ -2,9 +2,13 @@
     <tr valign="top">
         <td>
             <a href="{{ url_for('main.staff', staffid=staff.id) }}"><span style="font-size:15px;font-weight:bold">{{ staff.staff_name }}</span></a>
-            <br><span style="font-size:15px">Email: {{ staff.email }}
-            <br>Risk score: {{ staff.risk_score|round(1, 'common') }}
-            <br>Direction of progress:
+            <br>
+            <span style="font-size:15px">
+                Email: {{ staff.email }}
+                <br>
+                Risk score: {{ staff.risk_score|round(1, 'common') }}
+                <br>
+                Direction of progress:
                     {% if staff.direction %}
                     Decreasing risk
                     {% else %}

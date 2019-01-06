@@ -76,8 +76,9 @@ def landingpage(page, staffid):
         department = Departments.query.get(staff.department_id)
         staff.clicked += 1
         staff.latest_risk = 30
-        if staff.clicked == 1: # first time staff member interaction, no need to find average or change direction (as default is False)
+        if staff.clicked == 1:
             staff.risk_score += 30
+            staff.direction = False
         else:
             new_risk = (staff.risk_score + 30)/2
             if (new_risk - staff.risk_score) > 0:
