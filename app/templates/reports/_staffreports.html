@@ -16,5 +16,8 @@
                     {% endif %}
             </span>
         </td>
+        <td align="right">
+            <a href="{{ url_for('main.staff', staffid=staff.id) }}" class="btn btn-block btn-info" role="button" style="width:150px">View profile</a>
+        </td>
     </tr>
 </table>
