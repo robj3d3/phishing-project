@@ -33,7 +33,9 @@ def reports_staff():
         return render_template('reports/reports_staff.html', title='Search Staff', form=form)
     if form.validate_on_submit():
         page = request.args.get('page', 1, type=int)
-        staff = Staff.query.filter(func.lower(Staff.staff_name)==func.lower(form.staff_name.data)).order_by(Staff.risk_score.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
+        staff = Staff.query.filter(
+            func.lower(Staff.staff_name).contains(func.lower(form.staff_name.data)) # filters where staff_name column contains query substring
+            ).order_by(Staff.risk_score.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
         if staff.has_next:
             next_url = url_for('reports.reports_staff', page=staff.next_num)
         else:
