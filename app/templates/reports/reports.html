@@ -1,9 +1,16 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
 
     <h1>Reports</h1>
     <hr>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form, button_map={'submit':'primary'}) }}
+        </div>
+    </div>
+    <br>
     <h2>Staff Ordered by Risk</h2>
     {% for staff in staff %}
         {% include 'reports/_staffreports.html' %}
