@@ -35,17 +35,21 @@
                 <h2>Send Phishing Email</h2>
                 <div class="row">
                     <div class="col-md-4">
-                        {{ wtf.quick_form(send_form, button_map={'submit':'primary'}) }}
+                        {{ wtf.quick_form(send_form, button_map={'sendSubmit':'primary'}) }}
                     </div>
                 </div>
                 <hr>
                 <h2>Schedule Phishing Email</h2>
-                <a href="{{ url_for('main.schedule', staffid=staff.id) }}" class="btn btn-block btn-success" role="button">Manually Schedule Test Phishing Email</a>
+                <div class="row">
+                    <div class="col-md-4">
+                        {{ wtf.quick_form(schedule_form, button_map={'scheduleSubmit':'primary'}) }}
+                    </div>
+                </div>
                 <hr>
                 <br>
                 <div class="row">
                         <div class="col-md-4">
-                            {{ wtf.quick_form(remove_form, button_map={'submit':'danger'}) }}
+                            {{ wtf.quick_form(remove_form, button_map={'removeSubmit':'danger'}) }}
                         </div>
                 </div>
             </div>
