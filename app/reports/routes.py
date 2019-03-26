@@ -85,33 +85,3 @@ def reports_departments():
         return render_template('reports/reports_departments.html', title='Search Department', form=form, department=department, staff=staff.items, next_url=next_url, prev_url=prev_url)
     else:
         return render_template('reports/reports_departments.html', title='Search Department', form=form) # If the page has been accessed as a GET request, i.e. the form has not been submitted, no paginated list will be displayed by default. Instead, the page will be empty excluding the form.
-
-    # POST/REDIRECT/GET pattern (shown below) does not work! Redirect will result in paginated object being re-generated, making form useless.
-
-    # form = SearchDepartmentForm()
-    # form.department.choices = [(i.id, i.department_name) for i in Departments.query.order_by('department_name')]
-    # page = request.args.get('page', 1, type=int)
-    # staff = Staff.query.order_by(Staff.staff_name).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
-    # department = None
-    # if staff.has_next:
-    #     next_url = url_for('reports.reports_departments', page=staff.next_num)
-    # else:
-    #     next_url = None
-    # if staff.has_prev:
-    #     prev_url = url_for('reports.reports_departments', page=staff.prev_num)
-    # else:
-    #     prev_url = None
-    # if form.validate_on_submit():
-    #     department = Departments.query.get(form.department.data)
-    #     page = request.args.get('page', 1, type=int)
-    #     staff = Staff.query.filter(Staff.department_id==form.department.data).order_by(Staff.risk_score.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
-    #     if staff.has_next:
-    #         next_url = url_for('reports.reports_departments', page=staff.next_num)
-    #     else:
-    #         next_url = None
-    #     if staff.has_prev:
-    #         prev_url = url_for('reports.reports_departments', page=staff.prev_num)
-    #     else:
-    #         prev_url = None
-    #     return redirect(url_for('reports.reports_departments'))
-    # return render_template('reports/reports_departments.html', title='Search Department', form=form, department=department, staff=staff.items, next_url=next_url, prev_url=prev_url)

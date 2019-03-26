@@ -7,10 +7,6 @@ from app import db
 
 from urllib.parse import urlparse, urljoin
 
-# http://flask.pocoo.org/snippets/62/
-# https://www.owasp.org/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet
-# "If no validation is applied, a malicious user could create a hyperlink to redirect your users to an unvalidated malicious website"
-# Security measure to ensure redirect is to a URL in the same server as the host (the URL is relative) - preventing external redirects which pose a security risk.
 def is_safe_url(target): # Returns boolean value, True if target redirect is relative, False if otherwise.
     ref_url = urlparse(request.host_url) # urlparse() parses URL into its six components, returning a 6-tuple.
     test_url = urlparse(urljoin(request.host_url, target)) # urljoin() constructs an absolute URL by combining the first argument URL (the base URL) with the target URL,
@@ -18,26 +14,6 @@ def is_safe_url(target): # Returns boolean value, True if target redirect is rel
     return test_url.scheme in ('http', 'https') and \
            ref_url.netloc == test_url.netloc # netloc is the 'www.test.co.uk:80' component of the URL - short for network location
                                              # scheme is the 'http' or 'https' component of the URL
-
-# https://docs.python.org/2/library/urlparse.html
-# https://tedboy.github.io/flask/generated/generated/flask.Request.host_url.html
-
-
-# http://flask.pocoo.org/docs/1.0/tutorial/views/
-# A view function is a function which contains code that is written to respond to requests made to the application.
-
-# http://flask.pocoo.org/docs/1.0/reqcontext/
-# Along with an application context, when a request is made, a request context is pushed. This context keeps track of request-level data during a request.
-# Rather than passing the request object to each function that runs during a request, the request and session proxies are accessed instead.
-# View functions, error handlers, and other functions have access to the request proxy object during a request.
-
-# https://flask-login.readthedocs.io/en/latest/
-# http://flask.pocoo.org/docs/1.0/api/
-# https://flask-wtf.readthedocs.io/en/stable/quickstart.html
-# http://flask-sqlalchemy.pocoo.org/2.3/queries/
-# http://flask.pocoo.org/docs/1.0/patterns/flashing/
-# https://en.wikipedia.org/wiki/Post/Redirect/Get
-# http://flask.pocoo.org/docs/0.12/patterns/errorpages/
 
 @bp.route('/login', methods=['GET', 'POST']) # Decorator registers the /login route with the login() view function, accepting only GET and POST requests to the page. This page is used for system administrator logins.
 def login():

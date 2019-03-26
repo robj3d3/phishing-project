@@ -1,4 +1,19 @@
-2019-01-29 19:28:55,100 ERROR: Exception on /staff/1 [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
+2019-03-22 09:55:50,271 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 10:18:22,558 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 10:24:15,266 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 11:01:01,133 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 11:01:23,368 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 11:05:31,543 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 11:05:34,433 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 18:53:45,439 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:32:46,727 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:34:26,107 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:34:52,524 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:38:21,689 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:47:24,292 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:53:58,257 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:54:07,391 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:55:00,509 ERROR: Exception on /staff/7 [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,7 +29,7 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 80, in staff
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 77, in staff
     return render_template('staff.html', title='Staff Profile', staff=staff, department=Departments.query.get(staff.department_id), send_form=sendEmailForm, schedule_form=scheduleEmailForm, remove_form=removeStaffForm)
   File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\templating.py", line 135, in render_template
     context, ctx.app)
@@ -42,71 +57,35 @@ Traceback (most recent call last):
     {% block content -%}
   File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\templates\base.html", line 43, in block "content"
     {% block app_content %}{% endblock %}
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\templates\staff.html", line 45, in block "app_content"
-    {{ wtf.quick_form(form, button_map={'scheduleSubmit':'primary'}) }}
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\runtime.py", line 579, in _invoke
-    rv = self._func(*arguments)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_bootstrap\templates\bootstrap\wtf.html", line 200, in template
-    {{ form.hidden_tag() }}
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 430, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'form' is undefined
-2019-01-29 19:30:43,798 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:101]
-2019-01-29 19:30:48,095 ERROR: Exception on /staff/1 [GET] [in c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py:1761]
-Traceback (most recent call last):
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 2292, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\app.py", line 1799, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\main\routes.py", line 78, in staff
-    return render_template('staff.html', title='Staff Profile', staff=staff, department=Departments.query.get(staff.department_id), send_form=sendEmailForm, schedule_form=scheduleEmailForm, remove_form=removeStaffForm)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\templating.py", line 135, in render_template
-    context, ctx.app)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask\templating.py", line 117, in _render
-    rv = template.render(context)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\templates\staff.html", line 2, in top-level template code
-    {% import 'bootstrap/wtf.html' as wtf %}
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\templates\base.html", line 1, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
-    {%- block html %}
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
-    {% block body -%}
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
-    {% block content -%}
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\templates\base.html", line 43, in block "content"
-    {% block app_content %}{% endblock %}
-  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\templates\staff.html", line 45, in block "app_content"
-    {{ wtf.quick_form(form, button_map={'scheduleSubmit':'primary'}) }}
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\runtime.py", line 579, in _invoke
-    rv = self._func(*arguments)
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\flask_bootstrap\templates\bootstrap\wtf.html", line 200, in template
-    {{ form.hidden_tag() }}
-  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\environment.py", line 430, in getattr
-    return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'form' is undefined
-2019-01-29 19:33:47,331 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:101]
-2019-01-29 19:34:35,713 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:101]
-2019-01-29 20:55:18,200 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:101]
-2019-02-16 19:32:29,453 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:101]
-2019-02-16 19:56:47,709 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:101]
+  File "C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\templates\staff.html", line 15, in block "app_content"
+    <h2>Department average risk score:</h2> <p><span style="font-size:30px;font-weight:bold">{{ department.risk_score|round(1, 'common') }}</span></p>
+  File "c:\users\rhlapt~1\docume~1\python~1\venvs~1\flaskw~1\lib\site-packages\jinja2\filters.py", line 797, in do_round
+    return round(value, precision)
+TypeError: type Undefined doesn't define __round__ method
+2019-03-22 19:55:27,703 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 19:55:58,913 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 20:59:19,315 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 21:00:49,225 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 21:16:34,487 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 21:47:01,783 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 22:14:47,252 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 22:31:15,722 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 22:31:24,850 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 22:33:08,028 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 22:35:21,620 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 22:38:09,702 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 22:43:02,784 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-22 22:44:02,073 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 00:19:13,684 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 19:26:55,135 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:04:02,334 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:06:46,252 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:08:28,289 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:08:45,525 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:26:36,770 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:31:16,347 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:31:58,337 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:33:31,383 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:39:06,082 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:52:42,466 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]
+2019-03-23 20:59:53,922 INFO: Phishing-Project startup [in C:\Users\RH Laptop\Documents\PythonFiles\PhishingProject\app\__init__.py:77]

@@ -14,12 +14,3 @@ def not_found_error(error):
 def internal_error(error):
     db.session.rollback()
     return render_template('errors/500.html'), 500
-
-
-# http://flask.pocoo.org/docs/1.0/api/
-
-# app_errorhandler() is like Flask.errorhandler() but for a blueprint. It registers an error handler for all requests, even if outside of the blueprint. This means
-# that I only have to register the error handlers in this file, and they apply for all respective error requests across the application.
-
-# The purpose of using error handlers is to keep the user interface consistent across the application. The error handlers I have initialised return a render_template()
-# with the template being a custom error page that includes a 'Back' hyperlink, which the system administrator can click to return to the index page.

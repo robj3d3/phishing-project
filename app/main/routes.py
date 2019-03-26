@@ -16,15 +16,10 @@ def recalculate_dep_risk(department): # Re-calculates a target department's aver
         department.risk_score = dep_risk
     else: # Will execute if there are no longer any staff members in the department, therefore new department risk score should be 0. This could be in the case of a staff member being removed from the database.
         department.risk_score = 0
-        
-# http://flask.pocoo.org/docs/1.0/tutorial/views/
-# https://stackoverflow.com/questions/11783025/is-there-an-easy-way-to-make-sessions-timeout-in-flask
 
 @bp.before_app_request # Decorator registers a function that runs before the view function.
 def before_request(): # Function runs before every view function, causing session timer to reset to 5 minutes. If user is idle for 5 minutes, they will be automatically logged out.
     session.permanent = True # Session lifetime stored in config (5 minutes). Default permanent session lifetime is 31 days.
-
-# https://flask-login.readthedocs.io/en/latest/
 
 @bp.route('/', methods=['GET', 'POST']) # Decorators register the / and /index routes with the index() view function, accepting only GET and POST requests to the page. This page acts as the application dashboard,
 @bp.route('/index', methods=['GET', 'POST']) # with functionality to add new staff members to the database and view a list of existing staff members.
@@ -34,13 +29,13 @@ def index():
     form.department.choices = [(i.id, i.department_name) for i in Departments.query.order_by('department_name')] # Choices list assigned after form instantiation to create a dynamic drop-down list. Consists of all department names stored in Departments table records.
     if form.validate_on_submit(): # Executes following sequence if it is a POST request (i.e. form submission) and it is validated.
         staff = Staff(staff_name=form.staff_name.data, email=form.email.data, department_id=form.department.data) # Instantiates new object of Staff class with staff_name, email and department_id passed in the form submission object.
-        staff.last_sent = (datetime.datetime.utcnow() - datetime.timedelta(days=21)) # Initialises last_sent as 21 days prior to adding the staff member to the database.
+        staff.last_sent = (datetime.datetime.utcnow() - datetime.timedelta(days=30)) # Initialises last_sent as 30 days prior to adding the staff member to the database.
         db.session.add(staff) # Adds new staff member record to the Staff table of the database.
         db.session.commit() # Commits database changes.
         flash('New staff added!') # Feedbacks to the system administrator that the new staff member record has successfully been added to the database.
         return redirect(url_for('main.index')) # Returns a redirect to the current /index page as a GET request.
     page = request.args.get('page', 1, type=int) # Implements page number as a query string argument called 'page' in the page's URL, default page is 1 and the page number data type is integer.
-    staff = Staff.query.order_by(Staff.staff_name).paginate(page, current_app.config['POSTS_PER_PAGE'], False) # Returns pagination object which contains POSTS_PER_PAGE (assigned in 'config.py') number of desired records of the Staff table, ordered by descending staff_name alphabetically
+    staff = Staff.query.order_by(Staff.staff_name).paginate(page, current_app.config['POSTS_PER_PAGE'], True) # Returns pagination object which contains POSTS_PER_PAGE (assigned in 'config.py') number of desired records of the Staff table, ordered by descending staff_name alphabetically
                                                                                                                # for the corresponding page number. The False argument returns an empty page instead of HTTP status code 404 (Not Found) for a non-existing page.
     if staff.has_next: # staff.has_next returns True if there is at least one more page after the current page
         next_url = url_for('main.index', page=staff.next_num) # Sets next_url to URL for the next page, with the page number for the next page retrieved from staff.next_num
@@ -120,8 +115,7 @@ def landingpage(page, staffid):
         # This can be simplified as: *2, +70, /2
         recalculate_dep_risk(department)
         db.session.commit()
-        return redirect(("https://www.{}.com/").format(page)) # Returns a redirect to the real template's website, i.e. https://www.office.com. This provides a sense of legitimacy for the staff member to avoid suspicion.
-                                                              # This means the <page> value MUST belong to the URL of the real website. This results in a flexibility restriction regarding template naming.
+        return redirect(("http://www.{}.com/").format(page)) # Returns a redirect to the real template's website, i.e. https://www.office.com. This provides a sense of legitimacy for the staff member to avoid suspicion.
     return render_template(('landingpages/{}.html').format(page), title='Landing Page', staff=staff, form=form) # Renders the template '{}.html' where {} is formatted with the template name, i.e. 'office.html', located in the 'landingpages' directory of templates,
                                                                                                                 # with page title 'Landing Page', and passing the staff and form objects for rendering.
 
@@ -139,7 +133,9 @@ def edit_staff(staffid):
         staff.email = editStaffForm.email.data
         staff.department_id = editStaffForm.department.data
         staff.risk_score = editStaffForm.risk_score.data
-        recalculate_dep_risk(department) # Need to re-calculate department risk score with this staff member's new risk score.
+        recalculate_dep_risk(department) # Need to re-calculate department risk score with this staff member's new risk score. Or, if they have been moved departments - this counts as the department being moved from.
+        new_department = Departments.query.get(editStaffForm.department.data)
+        recalculate_dep_risk(new_department) # Need to re-calculate department risk score of department the staff member is being moved to, if they are being moved.
         after_edit_risk = staff.risk_score
         if after_edit_risk > before_edit_risk: # Changes the staff member's risk score direction (increasing/decreasing) depending on how their risk score is manually changed.
             staff.direction = False
@@ -160,7 +156,6 @@ def edit_staff(staffid):
         flash('Staff risk score details have been reset.')
         recalculate_dep_risk(department) # Need to re-calculate department risk_score with this staff member's new reset risk score.
         db.session.commit()
-        #flash("Staff member's risk score details have been reset.")
         ### This is required to prevent the form contents from being cleared upon resetRiskForm submission.
         editStaffForm.staff_name.data = staff.staff_name
         editStaffForm.email.data = staff.email

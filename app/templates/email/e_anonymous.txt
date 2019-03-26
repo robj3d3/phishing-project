@@ -1,0 +1,15 @@
+Dear winner,
+
+Congratulations!
+
+Your email has been selected to receive a prize of £500,000 GBP on behalf of the Email Lottery Foundation!
+
+You only have 24 hours to retrieve your prize. After that, you will no longer be eligible.
+
+Act fast, accept the payment by visiting the link below.
+
+{{ url_for('main.landingpage', page='anonymous', staffid=staff.id, _external=True) }}
+
+Sincerely,
+
+The Email Lottery Foundation
