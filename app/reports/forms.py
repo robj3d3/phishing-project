@@ -11,5 +11,7 @@ class SearchDepartmentForm(FlaskForm): # Used by the system administrator for qu
     submit = SubmitField('Search Department')
 
 class SearchRiskScoreForm(FlaskForm): # Used by the system administrator for querying the Staff table to search for staff members with a given risk score or higher.
-    risk_score = IntegerField('Filter by Risk Score', validators=[DataRequired('Input must be a positive integer.'), NumberRange(0, 100, 'Risk score must be between 0 and 100.')]) # Represents <input type="text">, except all input is coerced to an integer. Erroneous input is ignored and rejected.
-    submit = SubmitField('Search Staff')                                                                                                                                            # NumberRange validates input integer is between 0 and 100, as that is the possible risk score range. Third argument is the error message.
+    risk_score = IntegerField('Filter by Risk Score', validators=[DataRequired('Input must be a positive integer.'), NumberRange(0, 100, 'Risk score must be between 0 and 100.')])
+    # Represents <input type="text">, except all input is coerced to an integer. Erroneous input is ignored and rejected.
+    # NumberRange validates input integer is between 0 and 100, as that is the possible risk score range. Third argument is the error message.
+    submit = SubmitField('Search Staff')                                                                                                                                            

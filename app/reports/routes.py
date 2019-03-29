@@ -17,8 +17,9 @@ def reports():
     form = SearchRiskScoreForm() # Instantiates an object of the SearchRiskScoreForm class. This form is used to query the Staff table of the database and return Staff records with a given risk score or higher.
     if form.validate_on_submit(): # Executes following sequence if it is a POST request (i.e. form submission) and it is validated.
         page = request.args.get('page', 1, type=int) # Implements page number as a query string argument called 'page' in the page's URL, default page is 1 and the page number data type is integer.
-        staff = Staff.query.filter(Staff.risk_score>=form.risk_score.data).order_by(Staff.risk_score.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False) # Returns pagination object for the corresponding page number which contains POSTS_PER_PAGE (assigned in 'config.py') number of desired records of the Staff table, ordered by descending risk_score,
-                                                                                                                                                                         # containing records only with a risk_score greater than or equal to the value submitted in the form by the user. The False argument returns an empty page instead of HTTP status code 404 (Not Found) for a non-existing page.
+        staff = Staff.query.filter(Staff.risk_score>=form.risk_score.data).order_by(Staff.risk_score.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False) # Returns pagination object for the corresponding page number which contains POSTS_PER_PAGE
+        # (assigned in 'config.py') number of desired records of the Staff table, ordered by descending risk_score, containing records only with a risk_score greater than or equal to the value submitted in the form by the user.
+        # The False argument returns an empty page instead of HTTP status code 404 (Not Found) for a non-existing page.
         if staff.has_next: # staff.has_next returns True if there is at least one more page after the current page
             next_url = url_for('reports.reports', page=staff.next_num) # Sets next_url to URL for the next page, with the page number for the next page retrieved from staff.next_num
         else:
@@ -27,8 +28,8 @@ def reports():
             prev_url = url_for('reports.reports', page=staff.prev_num) # Sets prev_url to URL for the previous page, with the page number for the previous page retrieved from staff.prev_num
         else:
             prev_url = None
-        return render_template('reports/reports.html', title='Reports', form=form, staff=staff.items, next_url=next_url, prev_url=prev_url) # Renders the template 'reports.html' located in the 'reports' directory of templates, with page title 'Reports', and passing the form object, staff.items (list of items in the requested page),
-                                                                                                                                            # URL for the next page of results, and the URL for the previous page of results.
+        return render_template('reports/reports.html', title='Reports', form=form, staff=staff.items, next_url=next_url, prev_url=prev_url) # Renders the template 'reports.html' located in the 'reports' directory of templates, with page title 'Reports', and passing
+                                                                                                                                # the form object, staff.items (list of items in the requested page), URL for the next page of results, and the URL for the previous page of results.
     else: # If the page has been accessed as a GET request, the following sequence will execute, loading a paginated list of all Staff records in order of descending risk_score, such that those with the highest risk score are seen at the top of the list.
         page = request.args.get('page', 1, type=int)
         staff = Staff.query.order_by(Staff.risk_score.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False)
@@ -67,13 +68,14 @@ def reports_staff():
 @bp.route('/reports/departments', methods=['GET', 'POST']) # This page is used by the system administrator to search for a specific Departments record by department name from a dynamic drop-down list.
 @login_required
 def reports_departments():
-    form = SearchDepartmentForm() # Instantiates an object of the SearchDepartmentForm class. This form is used to query the Departments table of the database and return the staff records that are related to the queried Department record, as well as the average department risk score.
+    form = SearchDepartmentForm() # Instantiates an object of the SearchDepartmentForm class. This form is used to query the Departments table of the database and return the staff records related to the queried Department record, as well as the average department risk score.
     form.department.choices = [(i.id, i.department_name) for i in Departments.query.order_by('department_name')] # Choices list assigned after form instantiation to create a dynamic drop-down list. Consists of all department names stored in Departments table records.
     if form.validate_on_submit(): # Executes the following sequence if the form is submitted with a POST request and the data submitted is validated.
         department = Departments.query.get(form.department.data) # Queries the Departments table of the database, returning the Departments record indexed by the selected department's id.
         page = request.args.get('page', 1, type=int)
-        staff = Staff.query.filter(Staff.department_id==form.department.data).order_by(Staff.risk_score.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False) # Returns pagination object containing a list of Staff records queried from the Staff table in the database (ordered by descending risk score),
-                                                                                                                                                                            # where the Staff records have the foreign key department_id field equal to the id provided in the submitted form object.
+        staff = Staff.query.filter(Staff.department_id==form.department.data).order_by(Staff.risk_score.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], False) # Returns pagination object containing a list of Staff records queried from the Staff table in the database
+                                                                                                                                                                            # ordered by descending risk score), where the Staff records have the foreign key department_id field equal
+                                                                                                                                                                            # to the id provided in the submitted form object.
         if staff.has_next:
             next_url = url_for('reports.reports_departments', page=staff.next_num)
         else:

@@ -35,8 +35,8 @@ def index():
         flash('New staff added!') # Feedbacks to the system administrator that the new staff member record has successfully been added to the database.
         return redirect(url_for('main.index')) # Returns a redirect to the current /index page as a GET request.
     page = request.args.get('page', 1, type=int) # Implements page number as a query string argument called 'page' in the page's URL, default page is 1 and the page number data type is integer.
-    staff = Staff.query.order_by(Staff.staff_name).paginate(page, current_app.config['POSTS_PER_PAGE'], True) # Returns pagination object which contains POSTS_PER_PAGE (assigned in 'config.py') number of desired records of the Staff table, ordered by descending staff_name alphabetically
-                                                                                                               # for the corresponding page number. The False argument returns an empty page instead of HTTP status code 404 (Not Found) for a non-existing page.
+    staff = Staff.query.order_by(Staff.staff_name).paginate(page, current_app.config['POSTS_PER_PAGE'], True) # Returns pagination object which contains POSTS_PER_PAGE (assigned in 'config.py') number of desired records of the Staff table, ordered by descending staff_name
+                                                                                                               # alphabetically for the corresponding page number. The False argument returns an empty page instead of HTTP status code 404 (Not Found) for a non-existing page.
     if staff.has_next: # staff.has_next returns True if there is at least one more page after the current page
         next_url = url_for('main.index', page=staff.next_num) # Sets next_url to URL for the next page, with the page number for the next page retrieved from staff.next_num
     else:
@@ -45,8 +45,9 @@ def index():
         prev_url = url_for('main.index', page=staff.prev_num) # Sets prev_url to URL for the previous page, with the page number for the previous page retrieved from staff.prev_num
     else:
         prev_url = None
-    return render_template('index.html', title='Dashboard', form=form, staff=staff.items, next_url=next_url, prev_url=prev_url) # Renders the template 'index.html' located in the 'main' directory of templates, with page title 'Dashboard', and passing the form object, staff.items (list of items in the requested page),
-                                                                                                                                # URL for the next page of results, and the URL for the previous page of results.
+    return render_template('index.html', title='Dashboard', form=form, staff=staff.items, next_url=next_url, prev_url=prev_url)
+    # Renders the template 'index.html' located in the 'main' directory of templates, with page title 'Dashboard', and passing the form object, staff.items (list of items in the requested page),
+    # URL for the next page of results, and the URL for the previous page of results.
 
 @bp.route('/staff/<staffid>', methods=['GET', 'POST']) # This page displays the details of the staff member record with id <staffid>, providing functionality to manually send a test phishing email to the staff member, or remove their record from the database.
 @login_required
@@ -54,14 +55,17 @@ def staff(staffid): # staffid parameter is the value passed in the /<staffid> dy
     sendEmailForm = SendEmail() # Instantiates an object of the SendEmail class. This form is used to manually send a test phishing email to the staff member.
     scheduleEmailForm = ScheduleEmail() # Instantiates an object of the ScheduledEmail class. This form is used to manually schedule a test phishing email for the staff member.
     removeStaffForm = RemoveStaffForm() # Instantiates an object of the RemoveStaffForm class. This form is used to remove the staff member's record from the database.
-    staff = Staff.query.filter_by(id=staffid).first_or_404() # Queries the Staff table of the database, returning the first Staff record indexed with the primary key id passed as the argument to the view function. Otherwise, returns HTTP status code 404 (Not Found) if no record exists with id <staffid>
-    if sendEmailForm.sendSubmit.data and sendEmailForm.validate_on_submit(): # Executes following sequence if sendEmailForm is submitted with a POST request and the data submitted is validated, and also that it is the sendEmailForm's sendSubmit field that was entered, and not any other forms. This prevents multiple form submission clashes.
+    staff = Staff.query.filter_by(id=staffid).first_or_404() # Queries the Staff table of the database, returning the first Staff record indexed with the primary key id passed as the argument to the view function.
+                                                             # Otherwise, returns HTTP status code 404 (Not Found) if no record exists with id <staffid>
+    if sendEmailForm.sendSubmit.data and sendEmailForm.validate_on_submit(): # Executes following sequence if sendEmailForm is submitted with a POST request and the data submitted is validated, and also that it is the sendEmailForm's sendSubmit field that was entered,
+                                                                             # and not any other forms. This prevents multiple form submission clashes.
         template = sendEmailForm.selection.data # Assigns the template name selected by the user and passed as the data in the submitted form object to the variable 'template'.
         send_phishing_email(staff, template) # Invokes the send_email() function to create a background thread of the mail.send() method, sending the email to the staff member, with selected email template. The staff's record object is passed as the first parameter.
         flash('Phishing email sent, awaiting responses.')
         return redirect(url_for('main.staff', staffid=staff.id)) # Returns a redirect to the current /staff/<staffid> page as a GET request, passing the <staffid> as the query string argument.
     if scheduleEmailForm.scheduleSubmit.data and scheduleEmailForm.validate_on_submit():
-        scheduled_email = ScheduledEmails(staff_email=staff.email, template=scheduleEmailForm.selection.data, send_time=scheduleEmailForm.datetime, staff=staff) # Instantiates new object of ScheduledEmails class with template, send_time and target email passed in the form submission object and query string argument.
+        scheduled_email = ScheduledEmails(staff_email=staff.email, template=scheduleEmailForm.selection.data, send_time=scheduleEmailForm.datetime, staff=staff) # Instantiates new object of ScheduledEmails class with template, send_time and target email passed in the
+                                                                                                                                                                 # form submission object and query string argument.
         db.session.add(scheduled_email) # Adds the new ScheduledEmails record to the database.
         db.session.commit()
         flash('Phishing email scheduled.')
@@ -100,7 +104,8 @@ def landingpage(page, staffid):
         department = Departments.query.get(staff.department_id)
         staff.submitted += 1 # Increments staff's submitted attribute by 1
         staff.latest_risk = 100 # Assigns staff member's latest_risk score to 100, which corresponds to a staff member clicking on the link (+30) and then submitting data to the form (+70).
-        if staff.clicked == 1: # If it is the first time the staff member has clicked on a phishing link, an average does not need to be found, their risk score is just incremented by 70. This means their total risk score will be 100 as they have to have clicked on the link (+30) prior to submitting.
+        if staff.clicked == 1: # If it is the first time the staff member has clicked on a phishing link, an average does not need to be found, their risk score is just incremented by 70.
+                               # This means their total risk score will be 100 as they have to have clicked on the link (+30) prior to submitting.
             staff.risk_score += 70
         else:
             new_risk = ((staff.risk_score * 2) + 70)/2 # New average risk score is calculated by considering the actions of clicking on a link, and clicking and then submitting data as two independent events.
@@ -124,7 +129,8 @@ def landingpage(page, staffid):
 def edit_staff(staffid):
     editStaffForm = EditStaffForm() # Instantiates an object of the EditStaffForm class. This form is used by the system administrator to edit the fields of the Staff record with id <staffid>, passed as the query string argument in the page URL.
     resetRiskForm = ResetRiskScoreForm() # Instantiates an object of the ResetRiskScoreForm class. This form is used by the system administrator to reset the risk score details of the Staff record with id <staffid> upon submission of the form.
-    editStaffForm.department.choices = [(i.id, i.department_name) for i in Departments.query.order_by('department_name')] # Choices list assigned after editStaffForm instantiation to create a dynamic drop-down list. Consists of all department names stored in Departments table records.
+    editStaffForm.department.choices = [(i.id, i.department_name) for i in Departments.query.order_by('department_name')] # Choices list assigned after editStaffForm instantiation to create a dynamic drop-down list. 
+                                                                                                                          # Consists of all department names stored in Departments table records.
     if editStaffForm.editSubmit.data and editStaffForm.validate_on_submit():
         staff = Staff.query.filter_by(id=staffid).first()
         department = Departments.query.get(staff.department_id)

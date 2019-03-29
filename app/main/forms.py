@@ -98,8 +98,9 @@ class EditStaffForm(FlaskForm): # Used by the system administrator to edit a spe
     email = StringField('Update Email', validators=[DataRequired(), Email()]) # Represents <input type="text">, first argument is the rendered field name, and the second argument means
                                                                               # the field is required and the entry validates as an email address format (makes use of primitive regular expression)
     department = SelectField('Update Department', coerce=int, validators=[DataRequired()])
-    risk_score = FloatField('Update Average Risk Score', validators=[InputRequired('Input must be a positive float value.'), NumberRange(0, 100, 'Risk score must be between 0 and 100.')]) # NumberRange validates input float value is between 0 and 100, as that is the possible risk score range. Third argument for this validator is the error message.
-                                                                                                                                                                                          # Must use InputRequired as opposed to DataRequired because of validator problem with DataRequired always invalidating input of '0'.
+    risk_score = FloatField('Update Average Risk Score', validators=[InputRequired('Input must be a positive float value.'), NumberRange(0, 100, 'Risk score must be between 0 and 100.')])
+    # NumberRange validates input float value is between 0 and 100, as that is the possible risk score range. Third argument for this validator is the error message.
+    # Must use InputRequired as opposed to DataRequired because of validator problem with DataRequired always invalidating input of '0'.
     editSubmit = SubmitField('Submit Detail Changes')
 
 class ResetRiskScoreForm(FlaskForm): # Used by the system administrator to reset a staff member's risk score details (no. emails received, risk score, links clicked, etc.) to zero.
