@@ -12,3 +12,6 @@ Developed between April 2018 and March 2019 using Python (Flask) and an SQLite d
 
 ## The Future
 I intend to add more updates in the future when I get the chance!
+
+## Licensing
+See [LICENSE](LICENSE.md)
